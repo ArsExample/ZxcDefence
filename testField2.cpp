@@ -6,7 +6,6 @@ int createTestField2(sf::RenderWindow& window)
     sf::Clock clock;
 
     Game game;
-    game.addTower(2, 3, "default");
     game.addTile(2, 4);
     game.addTile(3, 4);
     game.addTile(4, 4);
@@ -20,6 +19,8 @@ int createTestField2(sf::RenderWindow& window)
     game.addBase(10, 6);
     game.addTile(10, 6);
     game.addPortal(1, 4);
+
+    game.addTower(5, 3, "default");
 
     game.addMonster(1, 4, game.getPortal(0)->getX(), game.getPortal(0)->getY(), game.getBase(0)->getX(), game.getBase(0)->getY(), "default");
 
@@ -43,7 +44,6 @@ int createTestField2(sf::RenderWindow& window)
 
         if (game.getClickedTower() != 0)
         {
-            std::cout << "click! x: " << game.getClickedTower()->relX << " y: " << game.getClickedTower()->relY << std::endl;
             if (game.getClickedTower()->level == 1)
             {
                 game.getTowerByCoords(game.getClickedTower()->relX, game.getClickedTower()->relY)->upgrade();

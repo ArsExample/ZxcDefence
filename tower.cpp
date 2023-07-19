@@ -5,7 +5,7 @@ Tower::Tower()
 	coordsInit(0, 0);
 }
 
-Tower::Tower(int coordX, int coordY)
+Tower::Tower(int coordX, int coordY, std::vector <Tile*> allTiles)
 {
 	coordsInit(coordX, coordY);
 }

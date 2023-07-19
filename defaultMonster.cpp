@@ -5,6 +5,7 @@ DefaultMonster::DefaultMonster(int coordX, int coordY, int pX, int pY, int bX, i
 	coordsInit(coordX, coordY, pX, pY, bX, bY);
 
 	speed = 1;
+	health = 2000;
 
 	deltaX = 0;
 	deltaY = 0;
@@ -13,8 +14,15 @@ DefaultMonster::DefaultMonster(int coordX, int coordY, int pX, int pY, int bX, i
 
 void DefaultMonster::update(sf::RenderWindow& window, float time, std::vector <Tile*> tiles)
 {
-	fullDraw(window);
-	move(tiles, time);
+	if (health > 0)
+	{
+		fullDraw(window);
+		move(tiles, time);
+	}
+	else 
+	{
+		die();
+	}
 }
 
 void DefaultMonster::fullDraw(sf::RenderWindow& window)

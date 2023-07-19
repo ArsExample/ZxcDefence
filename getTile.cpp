@@ -7,16 +7,19 @@ Tile* getTileByCoords(int x, int y, std::vector <Tile*> tiles)
 	try{
 		for (i; i < tiles.size(); i++)
 		{
-			if (tiles[i]->relX == x)
-			{
-				if (tiles[i]->relY == y)
+			//if (tiles[i])
+			//{
+				if (tiles[i]->relX == x)
 				{
-					return tiles[i];
+					if (tiles[i]->relY == y)
+					{
+						return tiles[i];
+					}
 				}
-			}
-			else
-			{
-			}
+				else
+				{
+				}
+			//}
 		}
 		return 0;
 	}

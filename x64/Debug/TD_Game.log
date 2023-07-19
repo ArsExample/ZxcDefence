@@ -1,60 +1,9 @@
-﻿  defaultMonster.cpp
-C:\Users\Арсений\source\repos\TD_Game\defaultMonster.cpp(33,21): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-C:\Users\Арсений\source\repos\TD_Game\defaultMonster.cpp(48,24): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-C:\Users\Арсений\source\repos\TD_Game\defaultMonster.cpp(64,28): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-C:\Users\Арсений\source\repos\TD_Game\defaultMonster.cpp(79,31): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-C:\Users\Арсений\source\repos\TD_Game\defaultMonster.cpp(119,21): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-C:\Users\Арсений\source\repos\TD_Game\defaultMonster.cpp(134,24): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-C:\Users\Арсений\source\repos\TD_Game\defaultMonster.cpp(150,28): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-C:\Users\Арсений\source\repos\TD_Game\defaultMonster.cpp(165,31): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-C:\Users\Арсений\source\repos\TD_Game\defaultMonster.cpp(221,24): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\Арсений\source\repos\TD_Game\defaultMonster.cpp(221,21): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-  game.cpp
-  main.cpp
-  monster.cpp
-  testField.cpp
-C:\Users\Арсений\source\repos\TD_Game\testField.cpp(44,15): warning C4244: инициализация: преобразование "sf::Int64" в "float", возможна потеря данных
-C:\Users\Арсений\source\repos\TD_Game\testField.cpp(153,36): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
-          with
-          [
-              T=float
-          ]
-C:\Users\Арсений\source\repos\TD_Game\testField.cpp(154,36): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
-          with
-          [
-              T=float
-          ]
-C:\Users\Арсений\source\repos\TD_Game\testField.cpp(164,39): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
-          with
-          [
-              T=float
-          ]
-C:\Users\Арсений\source\repos\TD_Game\testField.cpp(165,42): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
-          with
-          [
-              T=float
-          ]
-  testField2.cpp
-C:\Users\Арсений\source\repos\TD_Game\testField2.cpp(28,20): warning C4244: инициализация: преобразование "sf::Int64" в "float", возможна потеря данных
-C:\Users\Арсений\source\repos\TD_Game\testField2.cpp(74,43): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
-          with
-          [
-              T=float
-          ]
-C:\Users\Арсений\source\repos\TD_Game\testField2.cpp(75,43): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
-          with
-          [
-              T=float
-          ]
-C:\Users\Арсений\source\repos\TD_Game\testField2.cpp(85,46): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
-          with
-          [
-              T=float
-          ]
-C:\Users\Арсений\source\repos\TD_Game\testField2.cpp(86,49): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
-          with
-          [
-              T=float
-          ]
-  Создание кода...
+﻿  defaultTower.cpp
+C:\Users\Арсений\source\repos\TD_Game\defaultTower.cpp(204,36): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\Арсений\source\repos\TD_Game\defaultTower.cpp(204,27): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\Арсений\source\repos\TD_Game\defaultTower.cpp(205,32): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\Арсений\source\repos\TD_Game\defaultTower.cpp(205,25): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\Арсений\source\repos\TD_Game\defaultTower.cpp(210,34): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\Арсений\source\repos\TD_Game\defaultTower.cpp(210,26): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\Арсений\source\repos\TD_Game\defaultTower.cpp(140): warning C4715: DefaultTower::checkRange: значение возвращается не при всех путях выполнения
   TD_Game.vcxproj -> C:\Users\Арсений\source\repos\TD_Game\x64\Debug\TD_Game.exe

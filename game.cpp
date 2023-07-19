@@ -9,7 +9,7 @@ void Game::addTower(int coordX, int coordY, std::string type) // TODO string -> 
 {
 	if (std::strcmp(type.c_str(), "default") == 0)
 	{
-		towers.push_back(new DefaultTower(coordX, coordY));
+		towers.push_back(new DefaultTower(coordX, coordY, tiles));
 	}
 }
 
@@ -39,6 +39,11 @@ void Game::addMonster(int coordX, int coordY, int pX, int pY, int bX, int bY, st
 void Game::deleteMonster(Monster* _monster)
 {
 	monsters.erase(std::remove(monsters.begin(), monsters.end(), _monster), monsters.end());
+}
+
+void Game::deleteBullet(Bullet* _bullet)
+{
+	bullets.erase(std::remove(bullets.begin(), bullets.end(), _bullet), bullets.end());
 }
 
 Tower* Game::getTowerByCoords(int x, int y)
@@ -91,7 +96,7 @@ void Game::updateAll(sf::RenderWindow& window, float time)
 	int i;
 	for (i = 0; i < towers.size(); i++)
 	{
-		towers[i]->update(window);
+		towers[i]->update(window, bullets, monsters);
 	}
 
 	for (i = 0; i < tiles.size(); i++)
@@ -107,6 +112,18 @@ void Game::updateAll(sf::RenderWindow& window, float time)
 	for (i = 0; i < bases.size(); i++)
 	{
 		bases[i]->update(window);
+	}
+
+	for (i = 0; i < bullets.size(); i++)
+	{
+		if (!bullets[i]->wannadie)
+		{
+			bullets[i]->update(window, time);
+		}
+		else
+		{
+			deleteBullet(bullets[i]);
+		}
 	}
 
 	for (i = 0; i < monsters.size(); i++)

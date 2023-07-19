@@ -147,7 +147,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="base.cpp" />
+    <ClCompile Include="bullet.cpp" />
     <ClCompile Include="button.cpp" />
+    <ClCompile Include="defaultBullet.cpp" />
     <ClCompile Include="defaultMonster.cpp" />
     <ClCompile Include="defaultTower.cpp" />
     <ClCompile Include="game.cpp" />
@@ -156,15 +158,18 @@
     <ClCompile Include="mainMenu.cpp" />
     <ClCompile Include="monster.cpp" />
     <ClCompile Include="portal.cpp" />
+    <ClCompile Include="shoot.cpp" />
     <ClCompile Include="simpleFunctions.cpp" />
     <ClCompile Include="testField.cpp" />
     <ClCompile Include="testField2.cpp" />
     <ClCompile Include="tile.cpp" />
+    <ClCompile Include="timer.cpp" />
     <ClCompile Include="tower.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base.h" />
     <ClInclude Include="button.h" />
+    <ClInclude Include="defaultBullet.h" />
     <ClInclude Include="defaultMonster.h" />
     <ClInclude Include="defaultTower.h" />
     <ClInclude Include="game.h" />
@@ -172,11 +177,16 @@
     <ClInclude Include="mainMenu.h" />
     <ClInclude Include="monster.h" />
     <ClInclude Include="portal.h" />
+    <ClInclude Include="shoot.h" />
     <ClInclude Include="simpleFunctions.h" />
     <ClInclude Include="testField.h" />
     <ClInclude Include="testField2.h" />
     <ClInclude Include="tile.h" />
+    <ClInclude Include="timer.h" />
     <ClInclude Include="tower.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bullet.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

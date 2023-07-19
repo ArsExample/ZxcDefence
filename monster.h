@@ -7,7 +7,7 @@
 class Monster {
 public:
 	int x, y, w, h, relX, relY, prevRelX, prevRelY, portalX, portalY, baseX, baseY;
-	int speed;
+	int speed, health;
 	float deltaX, deltaY, prevX, prevY;
 	bool wannadie;
 
