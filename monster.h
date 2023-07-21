@@ -7,7 +7,7 @@
 class Monster {
 public:
 	int x, y, w, h, relX, relY, prevRelX, prevRelY, portalX, portalY, baseX, baseY;
-	int speed, health;
+	int speed, health, id;
 	float deltaX, deltaY, prevX, prevY;
 	bool wannadie;
 
@@ -16,7 +16,7 @@ public:
 	sf::Sprite sprite;
 
 	Monster();
-	Monster(int coordX, int coordY, int pX, int pY, int bX, int bY);
+	Monster(int coordX, int coordY, int pX, int pY, int bX, int bY, int ID);
 	void coordsInit(int coordX, int coordY, int pX, int pY, int bX, int bY);
 
 	virtual void move(std::vector <Tile*> tiles, float time) = 0;

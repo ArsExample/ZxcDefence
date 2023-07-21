@@ -5,8 +5,9 @@ Monster::Monster()
 	coordsInit(0, 0, 0, 0, 0, 0);
 }
 
-Monster::Monster(int coordX, int coordY, int pX, int pY, int bX, int bY) 
+Monster::Monster(int coordX, int coordY, int pX, int pY, int bX, int bY, int ID) 
 {
+	id = ID;
 	coordsInit(coordX, coordY, pX, pY, bX, bY);
 }
 

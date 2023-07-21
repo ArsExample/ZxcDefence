@@ -28,6 +28,29 @@ Monster** getMonsterByTile(Tile* tile, std::vector <Monster*>& monsters)
 	return 0;
 }
 
+Monster** getMonsterByID(int ID, std::vector <Monster*>& monsters)
+{
+	int i = 0;
+
+	for (i = 0; i < monsters.size(); i++)
+	{
+		if (monsters[i])
+		{
+			if (monsters[i]->id == ID)
+			{
+				return &monsters[i];
+			}
+		}
+		else
+		{
+			return 0;
+		}
+
+	}
+
+	return 0;
+}
+
 Tile* getTileByMonster(Monster* monster, std::vector <Tile*> tiles)
 {
 	int i = 0;

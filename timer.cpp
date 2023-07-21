@@ -26,16 +26,25 @@ void Timer::setTimerMin(int min)
 
 void Timer::update()
 {
+	if (starting)
+	{
+		auto millisec = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+		prevTime = millisec;
+
+		starting = false;
+	}
+
 	if (started)
 	{
 		auto millisec = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 		deltaTime = millisec - prevTime;
 		prevTime = millisec;
 		timePassed += deltaTime;
+		//std::cout << timePassed << std::endl;
 
 		if (timePassed >= delay)
 		{
-			std::cout << "passed timer, timePassed: " << timePassed << " delay: " << delay << std::endl;
+			//std::cout << "passed timer, timePassed: " << timePassed << " delay: " << delay << std::endl;
 
 
 			stop();
@@ -46,14 +55,17 @@ void Timer::update()
 
 void Timer::start()
 {
+	stop();
 	started = true;
 	stopped = false;
 
-	std::cout << "started timer" << std::endl;
+	//std::cout << "started timer, delay: " << delay << std::endl;
 
-	auto millisec = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+	//auto millisec = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 
-	prevTime = millisec;
+	//prevTime = millisec;
+
+	starting = true;
 }
 
 void Timer::stop()

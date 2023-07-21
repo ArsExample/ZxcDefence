@@ -6,7 +6,7 @@
 class Tower: public Button
 {
 public:
-	int level, damage, range, relX, relY;
+	int level, damage, range, relX, relY, targetID;
 	sf::Vector2f v, vd;
 	bool attacked = false;
 	std::vector <Tile*> nearbyTiles;
@@ -25,6 +25,7 @@ public:
 	void coordsInit(int coordX, int coordY);
 	virtual void attack(std::vector <Bullet*>& bullets) = 0;
 	virtual void aim(std::vector <Monster*>& monsters) = 0;
+	virtual void updateTarget(std::vector <Monster*>& monsters) = 0;
 	virtual int checkRange() = 0;
 	virtual void upgrade() = 0;
 	virtual void downgrade() = 0;

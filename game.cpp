@@ -5,6 +5,13 @@ Game::Game()
 
 }
 
+void Game::start()
+{
+	waveMgr = Wave(portals[0]->relX, portals[0]->relY, bases[0]->relX, bases[0]->relY);
+
+	waveMgr.addWave("DDDDDDDDDD", 1);
+}
+
 void Game::addTower(int coordX, int coordY, std::string type) // TODO string -> class Type
 {
 	if (std::strcmp(type.c_str(), "default") == 0)
@@ -28,12 +35,9 @@ void Game::addBase(int coordX, int coordY)
 	bases.push_back(new Base(coordX, coordY));
 }
 
-void Game::addMonster(int coordX, int coordY, int pX, int pY, int bX, int bY, std::string type)
+void Game::addMonster(int coordX, int coordY, int pX, int pY, int bX, int bY, std::string type, int ID)
 {
-	if (std::strcmp(type.c_str(), "default") == 0)
-	{
-		monsters.push_back(new DefaultMonster(coordX, coordY, pX, pY, bX, bY));
-	}
+	spawnMonster(coordX, coordY, pX, pY, bX, bY, type, ID, monsters);
 }
 
 void Game::deleteMonster(Monster* _monster)
@@ -93,11 +97,17 @@ Base* Game::getBase(int id)
 
 void Game::updateAll(sf::RenderWindow& window, float time)
 {
+	waveMgr.update(monsters);
+
+	//std::cout << "array size (before towers update): " << monsters.size() << std::endl;
+
 	int i;
 	for (i = 0; i < towers.size(); i++)
 	{
 		towers[i]->update(window, bullets, monsters);
 	}
+
+	//std::cout << "array size (after towers update): " << monsters.size() << std::endl;
 
 	for (i = 0; i < tiles.size(); i++)
 	{
@@ -136,4 +146,6 @@ void Game::updateAll(sf::RenderWindow& window, float time)
 			deleteMonster(monsters[i]);
 		}
 	}
+
+	//std::cout << "array size (after monsters update): " << monsters.size() << std::endl;
 }

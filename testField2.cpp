@@ -22,7 +22,9 @@ int createTestField2(sf::RenderWindow& window)
 
     game.addTower(5, 3, "default");
 
-    game.addMonster(1, 4, game.getPortal(0)->getX(), game.getPortal(0)->getY(), game.getBase(0)->getX(), game.getBase(0)->getY(), "default");
+    //game.addMonster(1, 4, game.getPortal(0)->getX(), game.getPortal(0)->getY(), game.getBase(0)->getX(), game.getBase(0)->getY(), "default");
+
+    game.start();
 
     while (window.isOpen())
     {

@@ -11,6 +11,7 @@ DefaultTower::DefaultTower(int coordX, int coordY, std::vector <Tile*> allTiles)
 	level = 1;
 	damage = 1;
 	attackRange = 1;
+	monsterCounter = 0;
 }
 
 void DefaultTower::update(sf::RenderWindow& window, std::vector <Bullet*>& bullets, std::vector <Monster*>& monsters)
@@ -27,9 +28,14 @@ void DefaultTower::update(sf::RenderWindow& window, std::vector <Bullet*>& bulle
 	if (!target)
 	{
 		aim(monsters);
+		//std::cout << "no monster" << std::endl;
 	}
 	else
 	{
+		//std::cout << "X: " << (*target)->sprite.getPosition().x << " y: " << (*target)->sprite.getPosition().y << std::endl;
+		//std::cout << "array size (in towers update): " << monsters.size() << std::endl;
+
+		updateTarget(monsters);
 		rotate();
 		checkRange();
 	}
@@ -53,10 +59,18 @@ void DefaultTower::downgrade()
 
 void DefaultTower::rotate()
 {
-	sf::Vector2f v((*target)->sprite.getPosition().x + ((*target)->w) / 2, (*target)->sprite.getPosition().y + ((*target)->h) / 2);
-	sf::Vector2f vd = v - gunSprite.getPosition();
+	if (target)
+	{
+		sf::Vector2f v((*target)->sprite.getPosition().x + ((*target)->w) / 2, (*target)->sprite.getPosition().y + ((*target)->h) / 2);
+		sf::Vector2f vd = v - gunSprite.getPosition();
 
-	gunSprite.setRotation(std::atan2(vd.y, vd.x) * 180.f / 3.14f - 180);
+		//std::cout << (*target)->sprite.getPosition().x << " " << (*target)->sprite.getPosition().y << " " << std::atan2(vd.y, vd.x) * 180.f / 3.14f - 180 << std::endl;
+
+
+		gunSprite.setRotation(std::atan2(vd.y, vd.x) * 180.f / 3.14f - 180);
+		//std::cout << gunSprite.getRotation() << std::endl;
+		//gunSprite.setRotation(45);
+	}
 }
 
 std::vector <Tile*> DefaultTower::getNearbyTiles(std::vector <Tile*> allTiles)
@@ -99,8 +113,17 @@ void DefaultTower::aim(std::vector <Monster*>& monsters) //debugged
 		{
 			if (getMonsterByTile(nearbyTiles[i], monsters) != 0)
 			{
+				monsterCounter += 1;
+
+				std::cout << "targeted!" << std::endl;
+
 				target = getMonsterByTile(nearbyTiles[i], monsters);
-				std::cout << "targeted" << std::endl;
+
+				targetID = (*target)->id;
+
+				(*target)->image.loadFromFile("textures/targetedMonster.png");
+				(*target)->texture.loadFromImage((*target)->image);
+				(*target)->sprite.setTexture((*target)->texture);
 			}
 		}
 	//}
@@ -111,6 +134,13 @@ void DefaultTower::aim(std::vector <Monster*>& monsters) //debugged
 
 }
 
+void DefaultTower::updateTarget(std::vector <Monster*>& monsters)
+{
+	//std::cout << targetID << std::endl;
+
+	target = getMonsterByID(targetID, monsters);
+}
+
 int DefaultTower::checkRange()
 {
 	int i;
@@ -119,6 +149,10 @@ int DefaultTower::checkRange()
 	{
 		if (getTileByMonster(*target, nearbyTiles) == 0 || (*target)->health <= 0)
 		{
+			(*target)->image.loadFromFile("textures/defaultMonster.png");
+			(*target)->texture.loadFromImage((*target)->image);
+			(*target)->sprite.setTexture((*target)->texture);
+
 			target = NULL;
 			timer.stop();
 			return 0;
@@ -132,7 +166,7 @@ void DefaultTower::attack(std::vector <Bullet*>& bullets)
 	{
 		if (target)
 		{
-			std::cout << "timer attacking" << std::endl;
+			std::cout << "attack" << std::endl;
 
 			addBullet(relX, relY, *target, bullets);
 			timer.setTimerSec(2);

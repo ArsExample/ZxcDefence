@@ -1,11 +1,13 @@
 #include "defaultMonster.h"
 
-DefaultMonster::DefaultMonster(int coordX, int coordY, int pX, int pY, int bX, int bY)
+DefaultMonster::DefaultMonster(int coordX, int coordY, int pX, int pY, int bX, int bY, int ID)
 {
+	id = ID;
+
 	coordsInit(coordX, coordY, pX, pY, bX, bY);
 
 	speed = 1;
-	health = 2000;
+	health = 2;
 
 	deltaX = 0;
 	deltaY = 0;
@@ -116,7 +118,6 @@ void DefaultMonster::move(std::vector <Tile*> tiles, float time)
 		}
 	}
 	else if (relX == baseX && relY == baseY) {  // esli v taile bazy
-		// TODO -hp && die
 		die();
 	}
 	else {  // esli na doroge
@@ -206,6 +207,8 @@ void DefaultMonster::move(std::vector <Tile*> tiles, float time)
 
 void DefaultMonster::die()
 {
+	std::cout << "monster#" << id << " dead" << std::endl;
+
 	wannadie = true;
 }
 

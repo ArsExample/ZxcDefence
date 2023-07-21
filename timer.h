@@ -5,7 +5,7 @@
 class Timer {
 public:
 	int delayType;  // 0 - milisec, 1 - sec, 2 - min
-	bool timerPassed, started, stopped;
+	bool timerPassed, starting, started, stopped;
 	int delay, timePassed, deltaTime, prevTime;
 
 	Timer();
