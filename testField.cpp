@@ -33,8 +33,23 @@ int createTestField(sf::RenderWindow& window)
 	if (gameStarted)
 	{
 		Game game;
-		game.addTower(2, 3, "default");
-		// DefaultTower t1(2, 3);
+		game.addTile(2, 4);
+		game.addTile(3, 4);
+		game.addTile(4, 4);
+		game.addTile(5, 4);
+		game.addTile(6, 4);
+		game.addTile(7, 4);
+		game.addTile(8, 4);
+		game.addTile(8, 5);
+		game.addTile(8, 6);
+		game.addTile(9, 6);
+		game.addBase(10, 6);
+		game.addTile(10, 6);
+		game.addPortal(1, 4);
+
+		game.addTower(5, 3, "default");
+
+		//game.startWave("DDDD", 1);
 
 		std::thread myThread(getServerInfo, std::ref(socket), std::ref(game));
 		myThread.detach();
@@ -106,11 +121,12 @@ void getServerInfo(sf::TcpSocket& socket, Game& game)
 			std::cout << "Received " << rdata << std::endl;
 			
 			type = split(rdata, '|')[0];
-			_x = std::stoi(split(rdata, '|')[1]);
-			_y = std::stoi(split(rdata, '|')[2]);
 
 			if (strcmp(type.c_str(), "upgrade") == 0)
 			{
+				_x = std::stoi(split(rdata, '|')[1]);
+				_y = std::stoi(split(rdata, '|')[2]);
+
 				std::cout << "trying to upgrade" << std::endl;
 				if (game.getTowerByCoords(_x, _y) != 0)
 				{
@@ -122,8 +138,11 @@ void getServerInfo(sf::TcpSocket& socket, Game& game)
 				}
 				//_tower.upgrade();
 			}
-			else
+			else if (strcmp(type.c_str(), "downgrade") == 0)
 			{
+				_x = std::stoi(split(rdata, '|')[1]);
+				_y = std::stoi(split(rdata, '|')[2]);
+
 				std::cout << "trying to downgrade" << std::endl;
 				if (game.getTowerByCoords(_x, _y) != 0)
 				{
@@ -133,6 +152,13 @@ void getServerInfo(sf::TcpSocket& socket, Game& game)
 				{
 					std::cout << "nullptr error" << std::endl;
 				}
+			}
+			else if (strcmp(type.c_str(), "wave") == 0)
+			{
+				std::string monstersStr = split(rdata, '|')[1];
+				int waveNumber = stoi(split(rdata, '|')[2]);
+
+				game.startWave(monstersStr, waveNumber);
 			}
 
 			rdata[0] = '\0';

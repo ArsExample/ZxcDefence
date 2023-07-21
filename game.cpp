@@ -5,11 +5,11 @@ Game::Game()
 
 }
 
-void Game::start()
+void Game::startWave(std::string _wave, int waveNumber)
 {
 	waveMgr = Wave(portals[0]->relX, portals[0]->relY, bases[0]->relX, bases[0]->relY);
 
-	waveMgr.addWave("DDDDDDDDDD", 1);
+	waveMgr.addWave(_wave, waveNumber);
 }
 
 void Game::addTower(int coordX, int coordY, std::string type) // TODO string -> class Type

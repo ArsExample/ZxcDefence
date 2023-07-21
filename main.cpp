@@ -13,7 +13,7 @@ int main()
 	window.setFramerateLimit(60);
 
 	/*createMainMenu(window);*/
-	/*createTestField(window);*/
+	//createTestField(window);
 	createTestField2(window);
 
 	return 0;

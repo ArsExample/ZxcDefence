@@ -57,23 +57,32 @@ int Wave::addWave(std::string monsters, int waveNumber)
 
 void Wave::update(std::vector <Monster*>& _monsterArray)
 {
-	if (!spawnedWave)
+	if (toSpawnQueue.size() != 0)
 	{
-		if (timer.stopped)
+		if (!spawnedWave)
 		{
-			
-			spawnMonster(toSpawnQueue[monsterSpawning].x, toSpawnQueue[monsterSpawning].y, toSpawnQueue[monsterSpawning].pX, toSpawnQueue[monsterSpawning].pY, toSpawnQueue[monsterSpawning].bX, toSpawnQueue[monsterSpawning].bY, toSpawnQueue[monsterSpawning].type, toSpawnQueue[monsterSpawning].ID, _monsterArray);
-			//spawnMonster(pX, pY, pX, pY, bX, bY, "default", _monsterArray);
-			monsterSpawning += 1;
-			timer.setTimerSec(2);
-			timer.start();
-
-			if (toSpawnQueue.size() - monsterSpawning == 0)
+			if (timer.stopped)
 			{
-				spawnedWave = true;
-				std::cout << "spawned full wave" << std::endl;
+				spawnMonster(toSpawnQueue[monsterSpawning].x, toSpawnQueue[monsterSpawning].y, toSpawnQueue[monsterSpawning].pX, toSpawnQueue[monsterSpawning].pY, toSpawnQueue[monsterSpawning].bX, toSpawnQueue[monsterSpawning].bY, toSpawnQueue[monsterSpawning].type, toSpawnQueue[monsterSpawning].ID, _monsterArray);
+				//spawnMonster(pX, pY, pX, pY, bX, bY, "default", _monsterArray);
+				monsterSpawning += 1;
+				timer.setTimerSec(2);
+				timer.start();
+
+				if (toSpawnQueue.size() - monsterSpawning == 0)
+				{
+					spawnedWave = true;
+					std::cout << "spawned full wave" << std::endl;
+				}
 			}
+			timer.update();
 		}
-		timer.update();
+		else
+		{
+			// !!!!
+
+			monsterSpawning = 0;
+			toSpawnQueue.clear();
+		}
 	}
 }

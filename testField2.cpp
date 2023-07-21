@@ -24,7 +24,7 @@ int createTestField2(sf::RenderWindow& window)
 
     //game.addMonster(1, 4, game.getPortal(0)->getX(), game.getPortal(0)->getY(), game.getBase(0)->getX(), game.getBase(0)->getY(), "default");
 
-    game.start();
+    //game.startWave("DDDD", 1);
 
     while (window.isOpen())
     {

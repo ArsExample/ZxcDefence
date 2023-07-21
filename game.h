@@ -21,7 +21,7 @@ public:
 	std::vector <Monster*> monsters;
 	std::vector <Bullet*> bullets;
 	Game();
-	void start();
+	void startWave(std::string _wave, int waveNumber);
 	void addTower(int coordX, int coordY, std::string type);
 	void addTile(int coordX, int coordY);
 	void addPortal(int coordX, int coordY);
