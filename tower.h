@@ -6,7 +6,7 @@
 class Tower: public Button
 {
 public:
-	int level, damage, range, relX, relY, targetID;
+	int x, y, w, h, level, damage, range, relX, relY, targetID;
 	sf::Vector2f v, vd;
 	bool attacked = false;
 	std::vector <Tile*> nearbyTiles;

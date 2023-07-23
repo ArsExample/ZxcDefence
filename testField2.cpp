@@ -20,7 +20,9 @@ int createTestField2(sf::RenderWindow& window)
     game.addTile(10, 6);
     game.addPortal(1, 4);
 
-    game.addTower(5, 3, "default");
+    game.addTileForTower(7, 5);
+
+    game.createTower(5, 3, "default");
 
     //game.addMonster(1, 4, game.getPortal(0)->getX(), game.getPortal(0)->getY(), game.getBase(0)->getX(), game.getBase(0)->getY(), "default");
 
@@ -35,7 +37,7 @@ int createTestField2(sf::RenderWindow& window)
         sf::Event event;
         while (window.pollEvent(event))
         {
-            if (event.type == sf::Event::Closed)
+            if (event.type == sf::Event::Closed)    
                 window.close();
         }
 

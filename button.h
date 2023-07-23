@@ -27,7 +27,6 @@ private:
 	sf::Image image2;
 	sf::Texture texture2;
 	sf::Sprite baseSprite;
-
 	sf::Clock clock;
 	sf::Time elapsedAfterClick1;
 	void fullDraw(sf::RenderWindow& window);

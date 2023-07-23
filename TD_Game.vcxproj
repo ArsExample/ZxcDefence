@@ -146,6 +146,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="addTower.cpp" />
     <ClCompile Include="base.cpp" />
     <ClCompile Include="bullet.cpp" />
     <ClCompile Include="button.cpp" />
@@ -156,6 +157,7 @@
     <ClCompile Include="getTile.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mainMenu.cpp" />
+    <ClCompile Include="menu.cpp" />
     <ClCompile Include="monster.cpp" />
     <ClCompile Include="portal.cpp" />
     <ClCompile Include="shoot.cpp" />
@@ -164,11 +166,13 @@
     <ClCompile Include="testField.cpp" />
     <ClCompile Include="testField2.cpp" />
     <ClCompile Include="tile.cpp" />
+    <ClCompile Include="tileForTower.cpp" />
     <ClCompile Include="timer.cpp" />
     <ClCompile Include="tower.cpp" />
     <ClCompile Include="wave.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="addTower.h" />
     <ClInclude Include="base.h" />
     <ClInclude Include="button.h" />
     <ClInclude Include="defaultBullet.h" />
@@ -177,6 +181,7 @@
     <ClInclude Include="game.h" />
     <ClInclude Include="getTile.h" />
     <ClInclude Include="mainMenu.h" />
+    <ClInclude Include="menu.h" />
     <ClInclude Include="monster.h" />
     <ClInclude Include="portal.h" />
     <ClInclude Include="shoot.h" />
@@ -185,6 +190,7 @@
     <ClInclude Include="testField.h" />
     <ClInclude Include="testField2.h" />
     <ClInclude Include="tile.h" />
+    <ClInclude Include="tileForTower.h" />
     <ClInclude Include="timer.h" />
     <ClInclude Include="tower.h" />
     <ClInclude Include="wave.h" />

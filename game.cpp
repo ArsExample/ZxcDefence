@@ -12,18 +12,21 @@ void Game::startWave(std::string _wave, int waveNumber)
 	waveMgr.addWave(_wave, waveNumber);
 }
 
-void Game::addTower(int coordX, int coordY, std::string type) // TODO string -> class Type
+void Game::createTower(int coordX, int coordY, std::string type)
 {
-	if (std::strcmp(type.c_str(), "default") == 0)
-	{
-		towers.push_back(new DefaultTower(coordX, coordY, tiles));
-	}
+	addTower(coordX, coordY, type, towers, tiles);
 }
 
 void Game::addTile(int coordX, int coordY)
 {
 	tiles.push_back(new Tile(coordX, coordY));
 }
+
+void Game::addTileForTower(int coordX, int coordY)
+{
+	tilesFt.push_back(new TileForTower(coordX, coordY));
+}
+
 
 void Game::addPortal(int coordX, int coordY)
 {
@@ -66,7 +69,7 @@ Tower* Game::getTowerByCoords(int x, int y)
 		}
 		else
 		{
-			std::cout << towers[i]->relX << " " << x << std::endl;
+			//std::cout << towers[i]->relX << " " << x << std::endl;
 		}
 	}
 	return 0;
@@ -112,6 +115,11 @@ void Game::updateAll(sf::RenderWindow& window, float time)
 	for (i = 0; i < tiles.size(); i++)
 	{
 		tiles[i]->update(window);
+	}
+
+	for (i = 0; i < tilesFt.size(); i++)
+	{
+		tilesFt[i]->update(window, towers, tiles);
 	}
 
 	for (i = 0; i < portals.size(); i++)

@@ -47,7 +47,7 @@ int createTestField(sf::RenderWindow& window)
 		game.addTile(10, 6);
 		game.addPortal(1, 4);
 
-		game.addTower(5, 3, "default");
+		game.createTower(5, 3, "default");
 
 		//game.startWave("DDDD", 1);
 
