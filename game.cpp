@@ -2,7 +2,7 @@
 
 Game::Game()
 {
-
+	//towerMgr = TowerMgr(&towers, &tiles);
 }
 
 void Game::startWave(std::string _wave, int waveNumber)
@@ -15,6 +15,7 @@ void Game::startWave(std::string _wave, int waveNumber)
 void Game::createTower(int coordX, int coordY, std::string type)
 {
 	addTower(coordX, coordY, type, towers, tiles);
+	//towerMgr.addTower(coordX, coordY, type);
 }
 
 void Game::addTile(int coordX, int coordY)
@@ -102,9 +103,11 @@ void Game::updateAll(sf::RenderWindow& window, float time)
 {
 	waveMgr.update(monsters);
 
-	//std::cout << "array size (before towers update): " << monsters.size() << std::endl;
+	//std::cout << "array size (before towers update): " << towers.size() << std::endl;
+	//std::cout << "array size (in towers update): " << towerMgr.towers->size() << std::endl;
 
 	int i;
+
 	for (i = 0; i < towers.size(); i++)
 	{
 		towers[i]->update(window, bullets, monsters);

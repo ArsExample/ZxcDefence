@@ -23,6 +23,9 @@ public:
 	std::vector <Base*> bases;
 	std::vector <Monster*> monsters;
 	std::vector <Bullet*> bullets;
+
+	//TowerMgr towerMgr;
+
 	Game();
 	void startWave(std::string _wave, int waveNumber);
 	void createTower(int coordX, int coordY, std::string type);

@@ -6,6 +6,8 @@ class TileForTower : public Button {
 public:
 	int relX, relY;
 	Menu* menu;
+	//TowerMgr* towerMgr;
+	bool closed;
 
 	sf::Image image;
 	sf::Texture texture;
