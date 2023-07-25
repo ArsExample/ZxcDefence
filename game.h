@@ -11,10 +11,12 @@
 #include "addTower.h"
 #include "spawnMonster.h"
 #include "wave.h"
+#include "drawMoney.h"
 
 class Game {
 public:
 	Wave waveMgr;
+	DrawMoney* moneyDrawer;
 
 	std::vector <Tower*> towers;
 	std::vector <Tile*> tiles;
@@ -23,6 +25,7 @@ public:
 	std::vector <Base*> bases;
 	std::vector <Monster*> monsters;
 	std::vector <Bullet*> bullets;
+	int moneyBalance;
 
 	//TowerMgr towerMgr;
 

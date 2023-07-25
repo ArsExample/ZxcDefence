@@ -10,7 +10,7 @@ TileForTower::TileForTower(int coordX, int coordY)
 	coordsInit(coordX, coordY);
 }
 
-void TileForTower::update(sf::RenderWindow& window, std::vector <Tower*>& towers, std::vector <Tile*>& tiles)
+void TileForTower::update(sf::RenderWindow& window, std::vector <Tower*>& towers, std::vector <Tile*>& tiles, int& moneyBalance)
 {
 	if (!closed)
 	{
@@ -23,16 +23,24 @@ void TileForTower::update(sf::RenderWindow& window, std::vector <Tower*>& towers
 
 		checkClicked();
 
-		menu->update(window);
 		if (menu->towerToSpawn == "default")  // v otdel'nuyu functsiyu, no mne len'
 		{
-			//std::cout << "start spawning tower" << std::endl;
-			addTower(relX, relY, "default", towers, tiles);
-			//towerMgr->addTower(relX, relY, "default");
-			menu->towerToSpawn = "";
-			closed = true;
+			if (moneyBalance >= 10)
+			{
+				//std::cout << "start spawning tower" << std::endl;
+				addTower(relX, relY, "default", towers, tiles);
+				//towerMgr->addTower(relX, relY, "default");
+				menu->towerToSpawn = "";
+				closed = true;
+				removeMoney(moneyBalance, 10);
+			}
+			else
+			{
+				menu->towerToSpawn = "";
+			}
 		}
 		window.draw(sprite);
+		menu->update(window);
 	}
 }
 

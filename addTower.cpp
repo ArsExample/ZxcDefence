@@ -7,13 +7,12 @@ void addTower(int coordX, int coordY, std::string type, std::vector <Tower*>& to
 		std::cout << "adding tower" << std::endl;
 		towers.push_back(new DefaultTower(coordX, coordY, tiles));
 
-
 	}
 }
 
 TowerMgr::TowerMgr()
 {
-
+	
 }
 
 TowerMgr::TowerMgr(std::vector <Tower*>* _towers, std::vector <Tile*>* _tiles)

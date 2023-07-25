@@ -15,5 +15,5 @@ public:
 
 	TileForTower(int coordX, int coordY);
 	void coordsInit(int coordX, int coordY);
-	void update(sf::RenderWindow& window, std::vector <Tower*>& towers, std::vector <Tile*>& tiles);
+	void update(sf::RenderWindow& window, std::vector <Tower*>& towers, std::vector <Tile*>& tiles, int& moneyBalance);
 };

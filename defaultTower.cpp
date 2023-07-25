@@ -12,6 +12,7 @@ DefaultTower::DefaultTower(int coordX, int coordY, std::vector <Tile*> allTiles)
 	damage = 1;
 	attackRange = 1;
 	monsterCounter = 0;
+	canAttack = true;
 }
 
 void DefaultTower::update(sf::RenderWindow& window, std::vector <Bullet*>& bullets, std::vector <Monster*>& monsters)
@@ -41,6 +42,7 @@ void DefaultTower::update(sf::RenderWindow& window, std::vector <Bullet*>& bulle
 	}
 
 	attack(bullets);
+	updateAttackCooldown();
 
 	fullDraw(window);
 }
@@ -121,9 +123,9 @@ void DefaultTower::aim(std::vector <Monster*>& monsters) //debugged
 
 				targetID = (*target)->id;
 
-				(*target)->image.loadFromFile("textures/targetedMonster.png");
-				(*target)->texture.loadFromImage((*target)->image);
-				(*target)->sprite.setTexture((*target)->texture);
+				//(*target)->image.loadFromFile("textures/targetedMonster.png");
+				//(*target)->texture.loadFromImage((*target)->image);
+				//(*target)->sprite.setTexture((*target)->texture);
 			}
 		}
 	//}
@@ -154,23 +156,33 @@ int DefaultTower::checkRange()
 			(*target)->sprite.setTexture((*target)->texture);
 
 			target = NULL;
-			timer.stop();
+			//timer.stop();
 			return 0;
 		}
 	}
 }
 
-void DefaultTower::attack(std::vector <Bullet*>& bullets)
+void DefaultTower::updateAttackCooldown()
 {
 	if (timer.stopped)
+	{
+		canAttack = true;
+
+		timer.setTimerSec(2);
+		timer.start();
+	}
+}
+
+void DefaultTower::attack(std::vector <Bullet*>& bullets)
+{
+	if (canAttack)
 	{
 		if (target)
 		{
 			std::cout << "attack" << std::endl;
 
 			addBullet(relX, relY, *target, bullets);
-			timer.setTimerSec(2);
-			timer.start();
+			canAttack = false;
 		}
 	}
 }

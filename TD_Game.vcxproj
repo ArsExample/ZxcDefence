@@ -146,6 +146,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="addMoney.cpp" />
     <ClCompile Include="addTower.cpp" />
     <ClCompile Include="base.cpp" />
     <ClCompile Include="bullet.cpp" />
@@ -153,6 +154,7 @@
     <ClCompile Include="defaultBullet.cpp" />
     <ClCompile Include="defaultMonster.cpp" />
     <ClCompile Include="defaultTower.cpp" />
+    <ClCompile Include="drawMoney.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="getTile.cpp" />
     <ClCompile Include="main.cpp" />
@@ -172,12 +174,14 @@
     <ClCompile Include="wave.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="addMoney.h" />
     <ClInclude Include="addTower.h" />
     <ClInclude Include="base.h" />
     <ClInclude Include="button.h" />
     <ClInclude Include="defaultBullet.h" />
     <ClInclude Include="defaultMonster.h" />
     <ClInclude Include="defaultTower.h" />
+    <ClInclude Include="drawMoney.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="getTile.h" />
     <ClInclude Include="mainMenu.h" />

@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "getTile.h"
+#include "addMoney.h"
 
 class Monster {
 public:
@@ -19,8 +20,8 @@ public:
 	Monster(int coordX, int coordY, int pX, int pY, int bX, int bY, int ID);
 	void coordsInit(int coordX, int coordY, int pX, int pY, int bX, int bY);
 
-	virtual void move(std::vector <Tile*> tiles, float time) = 0;
-	virtual void die() = 0;
+	virtual void move(std::vector <Tile*> tiles, float time, int& moneyBalance) = 0;
+	virtual void die(int& moneyBalance) = 0;
 	virtual void fullDraw(sf::RenderWindow& window) = 0;
-	virtual void update(sf::RenderWindow& window, float time, std::vector <Tile*> tiles) = 0;
+	virtual void update(sf::RenderWindow& window, float time, std::vector <Tile*> tiles, int& moneyBalance) = 0;
 };

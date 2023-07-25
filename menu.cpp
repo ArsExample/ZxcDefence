@@ -93,6 +93,17 @@ void Menu::updateElements(sf::RenderWindow& window)
 {
 	for (int i = 0; i < menuElements.size(); i++)
 	{
+		//TODO: fix this memory problem
+
+		sf::Font font;
+		sf::Text desc;
+
+		font.loadFromFile("Kristen ITC.ttf");
+		desc = sf::Text("", font, 20);
+		desc.setPosition(x + 130, y + 45);
+		desc.setString(menuElements[i].description);
+
+		window.draw(desc);
 		menuElements[i].button->update(window);
 		if (menuElements[i].button->isClicked())
 		{

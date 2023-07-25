@@ -3,6 +3,8 @@
 Game::Game()
 {
 	//towerMgr = TowerMgr(&towers, &tiles);
+	moneyBalance = 0;
+	moneyDrawer = new DrawMoney(1700, 10);
 }
 
 void Game::startWave(std::string _wave, int waveNumber)
@@ -103,6 +105,8 @@ void Game::updateAll(sf::RenderWindow& window, float time)
 {
 	waveMgr.update(monsters);
 
+	//std::cout << "money: " << moneyBalance << std::endl;
+
 	//std::cout << "array size (before towers update): " << towers.size() << std::endl;
 	//std::cout << "array size (in towers update): " << towerMgr.towers->size() << std::endl;
 
@@ -122,7 +126,7 @@ void Game::updateAll(sf::RenderWindow& window, float time)
 
 	for (i = 0; i < tilesFt.size(); i++)
 	{
-		tilesFt[i]->update(window, towers, tiles);
+		tilesFt[i]->update(window, towers, tiles, moneyBalance);
 	}
 
 	for (i = 0; i < portals.size(); i++)
@@ -151,12 +155,14 @@ void Game::updateAll(sf::RenderWindow& window, float time)
 	{
 		if (!monsters[i]->wannadie)
 		{
-			monsters[i]->update(window, time, tiles);
+			monsters[i]->update(window, time, tiles, moneyBalance);
 		}
 		else {
 			deleteMonster(monsters[i]);
 		}
 	}
+
+	moneyDrawer->update(window, moneyBalance);
 
 	//std::cout << "array size (after monsters update): " << monsters.size() << std::endl;
 }

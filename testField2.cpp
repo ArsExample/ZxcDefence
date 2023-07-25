@@ -7,20 +7,52 @@ int createTestField2(sf::RenderWindow& window)
 
     Game game;
     game.addTile(2, 4);
+    game.addTileForTower(2, 5);
     game.addTile(3, 4);
+    game.addTileForTower(3, 5);
     game.addTile(4, 4);
+    game.addTileForTower(4, 5);
     game.addTile(5, 4);
+    game.addTileForTower(5, 5);
     game.addTile(6, 4);
+    game.addTileForTower(6, 5);
     game.addTile(7, 4);
+    game.addTileForTower(7, 5);
     game.addTile(8, 4);
+    game.addTileForTower(7, 6);
     game.addTile(8, 5);
     game.addTile(8, 6);
+    game.addTileForTower(7, 7);
     game.addTile(9, 6);
-    game.addBase(10, 6);
+    game.addTileForTower(8, 7);
+    game.addTileForTower(9, 7);
+    //game.addTile(10, 6);
     game.addTile(10, 6);
+    game.addTileForTower(10, 7);
+    game.addTileForTower(11, 7);
+    game.addTileForTower(11, 6);
+    game.addTileForTower(11, 5);
+    game.addTileForTower(11, 4);
+    game.addTileForTower(11, 3);
+    game.addTileForTower(11, 2);
+    game.addTile(10, 5);
+    game.addTile(10, 4);
+    game.addTile(10, 3);
+    game.addTile(10, 2);
+    game.addTile(10, 1);
+    game.addTile(11, 1);
+    game.addTile(12, 1);
+    game.addTile(12, 2);
+    game.addTile(12, 3);
+    game.addTile(12, 4);
+    game.addTile(12, 5);
+    game.addTile(12, 6);
+    game.addTile(12, 7);
+    game.addTile(12, 8);
+    game.addTile(11, 8);
+    game.addBase(10, 8);
+    game.addTile(10, 8);
     game.addPortal(1, 4);
-
-    game.addTileForTower(7, 5);
 
     game.createTower(5, 3, "default");
 
@@ -59,7 +91,7 @@ int createTestField2(sf::RenderWindow& window)
         }
 
         window.clear();
-        drawField2(window);
+        //drawField2(window);
         game.updateAll(window, time);
         window.display();
     }

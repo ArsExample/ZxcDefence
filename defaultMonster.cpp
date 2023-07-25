@@ -14,16 +14,17 @@ DefaultMonster::DefaultMonster(int coordX, int coordY, int pX, int pY, int bX, i
 	wannadie = false;
 }
 
-void DefaultMonster::update(sf::RenderWindow& window, float time, std::vector <Tile*> tiles)
+void DefaultMonster::update(sf::RenderWindow& window, float time, std::vector <Tile*> tiles, int& moneyBalance)
 {
 	if (health > 0)
 	{
 		fullDraw(window);
-		move(tiles, time);
+		move(tiles, time, moneyBalance);
 	}
 	else 
 	{
-		die();
+		die(moneyBalance);
+		addMoney(moneyBalance, 10);
 	}
 }
 
@@ -32,7 +33,7 @@ void DefaultMonster::fullDraw(sf::RenderWindow& window)
 	window.draw(sprite);
 }
 
-void DefaultMonster::move(std::vector <Tile*> tiles, float time)
+void DefaultMonster::move(std::vector <Tile*> tiles, float time, int& moneyBalance)
 {
 	if (relX == portalX && relY == portalY)  // esli v taile portala
 	{
@@ -118,11 +119,12 @@ void DefaultMonster::move(std::vector <Tile*> tiles, float time)
 		}
 	}
 	else if (relX == baseX && relY == baseY) {  // esli v taile bazy
-		die();
+		std::cout << "in base" << std::endl;
+		die(moneyBalance);
 	}
 	else {  // esli na doroge
 		try {
-			if (getTileByCoords(relX + 1, relY, tiles) != 0 && (getTileByCoords(relX + 1, relY, tiles)->relX != prevRelX && getTileByCoords(relX + 1, relY, tiles)->relY != prevRelY))
+			if (getTileByCoords(relX + 1, relY, tiles) != 0 && (getTileByCoords(relX + 1, relY, tiles)->relX != prevRelX))
 			{
 				prevX = sprite.getPosition().x;
 				sprite.move(0.1 * time, 0);
@@ -130,6 +132,7 @@ void DefaultMonster::move(std::vector <Tile*> tiles, float time)
 				if (deltaX >= 120)
 				{
 					prevRelX = relX;
+					prevRelY = relY;
 					relX += 1;
 					deltaX = 0;
 				}
@@ -137,44 +140,57 @@ void DefaultMonster::move(std::vector <Tile*> tiles, float time)
 			else {
 				try
 				{
-					if (getTileByCoords(relX - 1, relY, tiles) != 0 && (getTileByCoords(relX - 1, relY, tiles)->relX != prevRelX && getTileByCoords(relX - 1, relY, tiles)->relY != prevRelY))
+					if (getTileByCoords(relX, relY + 1, tiles) != 0 && (getTileByCoords(relX, relY + 1, tiles)->relY != prevRelY))
 					{
-						prevX = sprite.getPosition().x;
-						sprite.move(-0.1 * time, 0);
-						deltaX += prevX - sprite.getPosition().x;
-						if (deltaX >= 120)
+						prevY = sprite.getPosition().y;
+						sprite.move(0, 0.1 * time);
+						deltaY += sprite.getPosition().y - prevY;
+						if (deltaY >= 120)
 						{
 							prevRelX = relX;
-							relX -= 1;
-							deltaX = 0;
+							prevRelY = relY;
+							relY += 1;
+							deltaY = 0;
 						}
 					}
 					else
 					{
 						try
 						{
-							if (getTileByCoords(relX, relY + 1, tiles) != 0 && (getTileByCoords(relX, relY + 1, tiles)->relX != prevRelX && getTileByCoords(relX, relY + 1, tiles)->relY != prevRelY))
+
+							//std::cout << (getTileByCoords(relX - 1, relY, tiles) != 0) << std::endl;
+							/*if (getTileByCoords(relX - 1, relY, tiles) != 0)
 							{
-								prevY = sprite.getPosition().y;
-								sprite.move(0, 0.1 * time);
-								deltaY += sprite.getPosition().y - prevY;
-								if (deltaY >= 120)
+								std::cout << "my relX: " << relX << " tile relX: " << getTileByCoords(relX - 1, relY, tiles)->relX << " prev relX: " << prevRelX << std::endl;
+								std::cout << (getTileByCoords(relX - 1, relY, tiles)->relX != prevRelX) << std::endl;
+							}*/
+
+							if (getTileByCoords(relX - 1, relY, tiles) != 0 && (getTileByCoords(relX - 1, relY, tiles)->relX != prevRelX))
+							{
+								std::cout << "going left" << std::endl;
+
+								prevX = sprite.getPosition().x;
+								sprite.move(-0.1 * time, 0);
+								deltaX += prevX - sprite.getPosition().x;
+								if (deltaX >= 120)
 								{
+									prevRelX = relX;
 									prevRelY = relY;
-									relY += 1;
-									deltaY = 0;
+									relX -= 1;
+									deltaX = 0;
 								}
 							}
 							else {
 								try
 								{
-									if (getTileByCoords(relX, relY - 1, tiles) != 0 && (getTileByCoords(relX, relY - 1, tiles)->relX != prevRelX && getTileByCoords(relX, relY - 1, tiles)->relY != prevRelY))
+									if (getTileByCoords(relX, relY - 1, tiles) != 0 && (getTileByCoords(relX, relY - 1, tiles)->relY != prevRelY))
 									{
 										prevY = sprite.getPosition().y;
 										sprite.move(0, -0.1 * time);
 										deltaY += prevY - sprite.getPosition().y;
 										if (deltaY >= 120)
 										{
+											prevRelX = relX;
 											prevRelY = relY;
 											relY -= 1;
 											deltaY = 0;
@@ -205,7 +221,7 @@ void DefaultMonster::move(std::vector <Tile*> tiles, float time)
 	}
 }
 
-void DefaultMonster::die()
+void DefaultMonster::die(int& moneyBalance)
 {
 	std::cout << "monster#" << id << " dead" << std::endl;
 

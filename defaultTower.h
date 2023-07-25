@@ -12,6 +12,7 @@ public:
 	void upgrade();
 	void downgrade();
 	void rotate();
+	void updateAttackCooldown();
 	void attack(std::vector <Bullet*>& bullets);
 	void aim(std::vector <Monster*>& monsters);
 	void updateTarget(std::vector <Monster*>& monsters);
